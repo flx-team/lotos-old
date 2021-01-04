@@ -6,7 +6,7 @@
 
 ## Code Example
 
-You can find examples projects in [Examples](https://github.com/rovecode/Rovecode.Lotos/tree/master/Examples) folder. But below I will briefly describe some patterns of code for fast introduction in current project.
+You can find examples projects in __[Examples](https://github.com/rovecode/Rovecode.Lotos/tree/master/Examples)__ folder. But below I will briefly describe some patterns of code for fast introduction in current project.
 
 ### How connect to mongo and get storage
 
