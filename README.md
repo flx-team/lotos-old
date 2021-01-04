@@ -106,6 +106,10 @@ var users3 = userStorage.SearchMany(e => e.Name == "Roman", offset: 2);
 
 ### How edit kepped datas
 
+For change data you can change Data Property of IStorageDataRepository. Lotos have are several ways to save changes to db. First invoke Exchange method, second using IDispose.
+
+IDispose way.
+
 ``` csharp
 
 using (user1)
@@ -114,10 +118,22 @@ using (user1)
 }
 ```
 
+Exchange method way.
+
 ``` csharp
 user1.Data.Phone = 12345;
 
 user1.Exchange();
+```
+
+In addition, ExchangeMode can be passed to the Exchange, which indicates how the data exchange process will take place. Default is ExchangeMode.InOut.
+
+``` csharp
+user1.Data.Phone = 12345;
+
+user1.Exchange(ExchangeMode.In);
+
+user2.Exchange(ExchangeMode.Out);
 ```
 
 ### How delete kepped datas
