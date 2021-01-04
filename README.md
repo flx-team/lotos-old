@@ -44,7 +44,7 @@ record UserData : StorageData
 
 ### How create/keep data model in db
 
-For keep model in db you create them and put in Keep method in IStorage. Same Keep method return repository for work with created data.
+For keep model in db you create them and put in Keep method of IStorage. Same Keep method return repository for work with created data.
 
 ``` csharp
 var userData = new UserData() 
@@ -122,7 +122,7 @@ user1.Exchange();
 
 ### How delete kepped datas
 
-For delete kepped datas using filters you can use methods _Burn_, _BurnMany_ in IStorage. This methods use expression filter.
+For delete kepped datas using filters you can use methods _Burn_, _BurnMany_ of IStorage. This methods use expression filter.
 
 _Burn_ method deletes first find data, matching expression filter.
 
