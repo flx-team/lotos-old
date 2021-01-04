@@ -32,10 +32,12 @@
     <None Include="..\..\Assets\stable_icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+      <Link>Assets\stable_icon.png</Link>
     </None>
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+      <Link>Assets\LICENSE</Link>
     </None>
   </ItemGroup>
 </Project>

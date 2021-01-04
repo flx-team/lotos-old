@@ -31,15 +31,22 @@
     <Folder Include="Exceptions\" />
     <Folder Include="Factories\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Assets\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\Assets\stable_icon.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <None Remove="..\..\Assets\stable_icon.png" />
+    <None Remove="..\..\LICENSE" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+      <Link>Assets\LICENSE</Link>
+    </None>
+    <None Include="..\..\Assets\stable_icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+      <Link>Assets\stable_icon.png</Link>
     </None>
   </ItemGroup>
 </Project>
