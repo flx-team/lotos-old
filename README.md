@@ -70,7 +70,7 @@ if (user1 is not null)
 }
 ```
 
-Finds all users with name Roman else return IEnumerable.
+Finds all users with name Roman. Return IEnumerable.
 
 ``` csharp
 var users1 = userStorage.SearchMany(e => e.Name == "Roman");
