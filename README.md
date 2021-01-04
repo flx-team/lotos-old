@@ -64,7 +64,7 @@ Finds first user with name Roman else return null.
 ``` csharp
 var user1 = userStorage.Search(e => e.Name == "Roman");
 
-if (user1 is null)
+if (user1 is not null)
 {
     // ..
 }
