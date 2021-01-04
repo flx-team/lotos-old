@@ -124,13 +124,13 @@ user1.Exchange();
 
 For delete kepped datas using filters you can use methods _Burn_, _BurnMany_ in IStorage. This methods use expression filter.
 
-_Burn_ method deletes first finded data, matching expression filter.
+_Burn_ method deletes first find data, matching expression filter.
 
 ``` csharp
 usersStorage.Burn(e => e.Name == "Roman");
 ```
 
-_BurnMany_ method deletes all finded datas, matching expression filter.
+_BurnMany_ method deletes all find datas, matching expression filter.
 
 ``` csharp
 usersStorage.BurnMany(e => e.Name == "Roman");
