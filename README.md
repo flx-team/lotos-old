@@ -186,7 +186,7 @@ var exist = user1.Exist();
 
 Add Rovecode.Lotos.DependencyInjection package and use AddLotos method for configure it. See example there.
 
-### How get IStorage if i'm has only IStorageDataRepository
+### How get IStorage if i'm have only IStorageDataRepository
 
 You can get IStorage from Storage property of IStorageDataRepository.
 
