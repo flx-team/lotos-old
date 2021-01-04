@@ -158,11 +158,41 @@ Or you can use _Burn_ method in IStorageDataRepository.
 user1.Burn();
 ```
 
-## Installation
+### How count datas
 
-## Tests
+For count datas you can use Count method of IStorage.
+
+``` csharp
+var count = usersStorage.Count(e => e.Name == "Roman");
+```
+
+### How check data is exists in db
+
+For check data is exists in db you can use Exist method of IStorage, or Exist method of IStorageDataRepository.
+
+IStorage way.
+
+``` csharp
+var exist = usersStorage.Exist(e => e.Name == "Roman");
+```
+
+IStorageDataRepository way.
+
+``` csharp
+var exist = user1.Exist();
+```
+
+### How use this package with ASP.NET Core / Dependency Injection
+
+Add Rovecode.Lotos.DependencyInjection package and use AddLotos method for configure it. See example there.
 
 ## How to use?
+
+For use this package:
+
+Add Rovecode.Lotos package from NuGet.
+
+If you use Microsoft.Extensions.DependencyInjection or ASP.NET Core add also Rovecode.Lotos.DependencyInjection package for Dependency Injection.
 
 ## Contribute
 
