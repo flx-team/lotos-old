@@ -25,4 +25,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Assets\stable_icon.png" >
+      <Pack>True</Pack>
+    </None>
+  </ItemGroup>
 </Project>

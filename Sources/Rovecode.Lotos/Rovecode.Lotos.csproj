@@ -14,6 +14,7 @@
     <ReleaseVersion>1.0.0</ReleaseVersion>
     <PackageVersion>1.0.0</PackageVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
+    <PackageIcon>stable_icon.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,5 +29,13 @@
     <Folder Include="Exceptions\" />
     <Folder Include="Factories\" />
     <Folder Include="Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="..\..\Assets\stable_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Assets\stable_icon.png" >
+      <Pack>True</Pack>
+    </None>
   </ItemGroup>
 </Project>
