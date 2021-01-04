@@ -7,6 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Sources\Rovecode.Lotos\Rovecode.Lotos.csproj" />
+    <PackageReference Include="Rovecode.Lotos" Version="1.0.0" />
   </ItemGroup>
 </Project>
