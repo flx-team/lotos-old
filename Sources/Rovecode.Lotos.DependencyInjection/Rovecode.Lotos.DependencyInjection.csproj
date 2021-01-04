@@ -2,7 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+    <PackOnBuild>true</PackOnBuild>
+    <Authors>Roman S</Authors>
+    <Description>Heir to Crassula, but with new ideas and full support for NET 5.</Description>
+    <Copyright>Roman S</Copyright>
+    <Owners>Roman S</Owners>
+    <Title>Rovecode.Lotos</Title>
+    <NeutralLanguage>en-US</NeutralLanguage>
     <ReleaseVersion>1.0.0</ReleaseVersion>
+    <PackageVersion>1.0.0</PackageVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
   </PropertyGroup>
 

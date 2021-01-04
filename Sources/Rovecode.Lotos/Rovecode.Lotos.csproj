@@ -11,8 +11,8 @@
     <Owners>Roman S</Owners>
     <Title>Rovecode.Lotos</Title>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <ReleaseVersion>0.2.0</ReleaseVersion>
-    <PackageVersion>0.1.0</PackageVersion>
+    <ReleaseVersion>1.0.0</ReleaseVersion>
+    <PackageVersion>1.0.0</PackageVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
   </PropertyGroup>
 
