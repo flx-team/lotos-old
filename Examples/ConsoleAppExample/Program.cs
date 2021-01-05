@@ -28,7 +28,7 @@ namespace ConsoleAppExample
     {
         static void Main(string[] args)
         {
-            var context = LotosConnectFactory.Connect("mongodb://localhost:27017", "LotosTest");
+            var context = LotosConnectFactory.Connect("mongodb://test.com:27017", "LotosTest");
 
             var usersStorage = context.Get<UserData>();
 
