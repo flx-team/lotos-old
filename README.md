@@ -20,7 +20,7 @@ __Connect__ method contains more overloading for many different situations, but 
 
 If connect to db is failed Lotos throw [LotosException](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Exceptions/LotosException.cs) with error details.
 
-For get storage you must have __record__ and this __record__ must extended from StorageData. For get storage invoke method __Get__ and in generic put your data __record__.
+For get storage you must have __record__ and this __record__ must extended from [StorageData](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Models/StorageData.cs). For get storage invoke method __Get__ and in generic put your data __record__.
 
 ``` csharp
 var userStorage = context.Get<UserData>();
@@ -30,7 +30,7 @@ Lotos auto generate collection in db.
 
 ### How create data model
 
-Create data model really ease. Create record and extend them from StorageData.
+Create data model really ease. Create record and extend them from [StorageData](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Models/StorageData.cs).
 
 ``` csharp
 record UserData : StorageData
@@ -42,7 +42,7 @@ record UserData : StorageData
 
 ### How create/keep data model in db
 
-For keep model in db you create them and put in Keep method of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs). Same Keep method return repository for work with created data.
+For keep model in db you create them and put in __Keep__ method of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs). Same Keep method return repository for work with created data.
 
 ``` csharp
 var userData = new UserData() 
@@ -55,7 +55,7 @@ var user = userStorage.Keep(userData);
 
 ### How find/get kepped datas
 
-For find kepped datas use methods Search, SearchMany, SearchAsync, SearchManyAsync. In this methods you used expression filters for search.
+For find kepped datas use methods __Search__, __SearchMany__, __SearchAsync__, __SearchManyAsync__. In this methods you used expression filters for search.
 
 Finds first user with name Roman else return null.
 
@@ -68,7 +68,7 @@ if (user1 is not null)
 }
 ```
 
-Finds all users with name Roman. Return IEnumerable.
+Finds all users with name Roman. Return __IEnumerable__.
 
 ``` csharp
 var users1 = userStorage.SearchMany(e => e.Name == "Roman");
@@ -79,7 +79,7 @@ foreach(var usr in users1)
 }
 ```
 
-Also you can use Async methods for search in other thread.
+Also you can use __Async__ methods for search in other thread.
 
 ``` csharp
 var user2 = await userStorage.SearchAsync(e => e.Name == "Roman");
@@ -104,9 +104,9 @@ var users3 = userStorage.SearchMany(e => e.Name == "Roman", offset: 2);
 
 ### How edit kepped datas
 
-For change data you can change Data Property of IStorageDataRepository. Lotos have are several ways to save changes to db. First invoke Exchange method, second using IDispose.
+For change data you can change Data Property of [IStorageDataRepository](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorageDataRepository.cs). Lotos have are several ways to save changes to db. First invoke __Exchange__ method, second using __IDispose__.
 
-IDispose way.
+__IDispose__ way.
 
 ``` csharp
 
@@ -116,7 +116,7 @@ using (user1)
 }
 ```
 
-Exchange method way.
+__Exchange__ method way.
 
 ``` csharp
 user1.Data.Phone = 12345;
@@ -124,7 +124,7 @@ user1.Data.Phone = 12345;
 user1.Exchange();
 ```
 
-In addition, ExchangeMode can be passed to the Exchange, which indicates how the data exchange process will take place. Default is ExchangeMode.InOut.
+In addition, __ExchangeMode__ can be passed to the __Exchange__, which indicates how the data exchange process will take place. Default is __ExchangeMode__.__InOut__.
 
 ``` csharp
 user1.Data.Phone = 12345;
@@ -136,21 +136,21 @@ user2.Exchange(ExchangeMode.Out);
 
 ### How delete kepped datas
 
-For delete kepped datas using filters you can use methods _Burn_, _BurnMany_ of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs). This methods use expression filter.
+For delete kepped datas using filters you can use methods __Burn_, __BurnMany__ of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs). This methods use expression filter.
 
-_Burn_ method deletes first find data, matching expression filter.
+__Burn__ method deletes first find data, matching expression filter.
 
 ``` csharp
 usersStorage.Burn(e => e.Name == "Roman");
 ```
 
-_BurnMany_ method deletes all find datas, matching expression filter.
+__BurnMany__ method deletes all find datas, matching expression filter.
 
 ``` csharp
 usersStorage.BurnMany(e => e.Name == "Roman");
 ```
 
-Or you can use _Burn_ method in IStorageDataRepository.
+Or you can use __Burn__ method in [IStorageDataRepository](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorageDataRepository.cs).
 
 ``` csharp
 user1.Burn();
@@ -158,7 +158,7 @@ user1.Burn();
 
 ### How count datas
 
-For count datas you can use Count method of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs).
+For count datas you can use __Count__ method of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs).
 
 ``` csharp
 var count = usersStorage.Count(e => e.Name == "Roman");
@@ -166,7 +166,7 @@ var count = usersStorage.Count(e => e.Name == "Roman");
 
 ### How check data is exists in db
 
-For check data is exists in db you can use Exist method of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs), or Exist method of IStorageDataRepository.
+For check data is exists in db you can use Exist method of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs), or Exist method of [IStorageDataRepository](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorageDataRepository.cs).
 
 [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs) way.
 
@@ -174,7 +174,7 @@ For check data is exists in db you can use Exist method of [IStorage](https://gi
 var exist = usersStorage.Exist(e => e.Name == "Roman");
 ```
 
-IStorageDataRepository way.
+[IStorageDataRepository](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorageDataRepository.cs) way.
 
 ``` csharp
 var exist = user1.Exist();
@@ -184,9 +184,9 @@ var exist = user1.Exist();
 
 Add Rovecode.Lotos.DependencyInjection package and use AddLotos method for configure it. See example there.
 
-### How get IStorage if i'm have only IStorageDataRepository
+### How get IStorage if i'm have only [IStorageDataRepository](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorageDataRepository.cs)
 
-You can get IStorage from Storage property of IStorageDataRepository.
+You can get IStorage from Storage property of [IStorageDataRepository](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorageDataRepository.cs).
 
 ``` csharp
 var usersStorage = user1.Storage;
