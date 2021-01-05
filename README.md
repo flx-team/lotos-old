@@ -136,7 +136,7 @@ user2.Exchange(ExchangeMode.Out);
 
 ### How delete kepped datas
 
-For delete kepped datas using filters you can use methods __Burn_, __BurnMany__ of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs). This methods use expression filter.
+For delete kepped datas using filters you can use methods __Burn__, __BurnMany__ of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs). This methods use expression filter.
 
 __Burn__ method deletes first find data, matching expression filter.
 
@@ -166,7 +166,7 @@ var count = usersStorage.Count(e => e.Name == "Roman");
 
 ### How check data is exists in db
 
-For check data is exists in db you can use Exist method of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs), or Exist method of [IStorageDataRepository](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorageDataRepository.cs).
+For check data is exists in db you can use __Exist__ method of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs), or Exist method of [IStorageDataRepository](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorageDataRepository.cs).
 
 [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs) way.
 
