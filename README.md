@@ -42,7 +42,7 @@ record UserData : StorageData
 
 ### How create/keep data model in db
 
-For keep model in db you create them and put in Keep method of IStorage. Same Keep method return repository for work with created data.
+For keep model in db you create them and put in Keep method of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs). Same Keep method return repository for work with created data.
 
 ``` csharp
 var userData = new UserData() 
@@ -136,7 +136,7 @@ user2.Exchange(ExchangeMode.Out);
 
 ### How delete kepped datas
 
-For delete kepped datas using filters you can use methods _Burn_, _BurnMany_ of IStorage. This methods use expression filter.
+For delete kepped datas using filters you can use methods _Burn_, _BurnMany_ of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs). This methods use expression filter.
 
 _Burn_ method deletes first find data, matching expression filter.
 
@@ -158,7 +158,7 @@ user1.Burn();
 
 ### How count datas
 
-For count datas you can use Count method of IStorage.
+For count datas you can use Count method of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs).
 
 ``` csharp
 var count = usersStorage.Count(e => e.Name == "Roman");
@@ -166,9 +166,9 @@ var count = usersStorage.Count(e => e.Name == "Roman");
 
 ### How check data is exists in db
 
-For check data is exists in db you can use Exist method of IStorage, or Exist method of IStorageDataRepository.
+For check data is exists in db you can use Exist method of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs), or Exist method of IStorageDataRepository.
 
-IStorage way.
+[IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs) way.
 
 ``` csharp
 var exist = usersStorage.Exist(e => e.Name == "Roman");
