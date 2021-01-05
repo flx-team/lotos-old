@@ -166,7 +166,7 @@ var count = usersStorage.Count(e => e.Name == "Roman");
 
 ### How check data is exists in db
 
-For check data is exists in db you can use __Exist__ method of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs), or Exist method of [IStorageDataRepository](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorageDataRepository.cs).
+For check data is exists in db you can use __Exist__ method of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs), or __Exist__ method of [IStorageDataRepository](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorageDataRepository.cs).
 
 [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs) way.
 
@@ -182,7 +182,7 @@ var exist = user1.Exist();
 
 ### How use this package with ASP.NET Core / Dependency Injection
 
-Add Rovecode.Lotos.DependencyInjection package and use AddLotos method for configure it. See example there.
+Add Rovecode.Lotos.DependencyInjection package and use __AddLotos__ method for configure it. See example there.
 
 ### How get IStorage if i'm have only IStorageDataRepository
 
@@ -196,9 +196,9 @@ var usersStorage = user1.Storage;
 
 For use this package:
 
-Add Rovecode.Lotos package from NuGet.
+Add [Rovecode.Lotos](https://www.nuget.org/packages/Rovecode.Lotos/) package from NuGet.
 
-If you use Microsoft.Extensions.DependencyInjection or ASP.NET Core add also Rovecode.Lotos.DependencyInjection package for Dependency Injection.
+If you use [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/) or ASP.NET Core add also [Rovecode.Lotos.DependencyInjection](https://www.nuget.org/packages/Rovecode.Lotos.DependencyInjection/) package for Dependency Injection.
 
 ## Contribute
 
