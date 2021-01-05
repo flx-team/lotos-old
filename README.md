@@ -1,7 +1,5 @@
 # Rovecode.Lotos 
 
-## Motivation
-
 ## Features
 
 ## Code Example
