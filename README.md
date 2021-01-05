@@ -42,7 +42,7 @@ record UserData : StorageData
 
 ### How create/keep data model in db
 
-For keep model in db you create them and put in __Keep__ method of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs). Same Keep method return repository for work with created data.
+For keep model in db you create them and put in __Keep__ method of [IStorage](https://github.com/rovecode/Rovecode.Lotos/blob/master/Sources/Rovecode.Lotos/Repositories/IStorage.cs). Same __Keep__ method return repository for work with created data.
 
 ``` csharp
 var userData = new UserData() 
