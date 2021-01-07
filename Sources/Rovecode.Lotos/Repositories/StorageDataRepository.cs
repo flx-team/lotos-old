@@ -49,7 +49,7 @@ namespace Rovecode.Lotos.Repositories
 
         public void Push(T data)
         {
-            if (!Exist())
+            if (!Exists())
             {
                 // TODO: Add exception text
                 throw new LotosException("");
@@ -77,7 +77,7 @@ namespace Rovecode.Lotos.Repositories
 
         public void Dispose()
         {
-            if (Exist())
+            if (Exists())
             {
                 Exchange();
             }
