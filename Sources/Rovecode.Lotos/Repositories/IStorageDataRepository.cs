@@ -40,6 +40,6 @@ namespace Rovecode.Lotos.Repositories
         /// Check curretn data is exists in storage.
         /// </summary>
         /// <returns></returns>
-        public bool Exist();
+        public bool Exists();
     }
 }

@@ -61,7 +61,7 @@ namespace Rovecode.Lotos.Repositories
         /// </summary>
         /// <param name="expression">Expression filter.</param>
         /// <returns></returns>
-        public bool Exist(Expression<Func<T, bool>> expression);
+        public bool Exists(Expression<Func<T, bool>> expression);
 
         /// <summary>
         /// Delete first find data matching expression filter.

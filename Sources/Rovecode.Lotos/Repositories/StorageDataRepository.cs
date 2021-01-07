@@ -5,7 +5,7 @@ using Rovecode.Lotos.Models;
 
 namespace Rovecode.Lotos.Repositories
 {
-    public class StorageDataRepository<T> : IStorageDataRepository<T> where T : StorageData
+    internal class StorageDataRepository<T> : IStorageDataRepository<T> where T : StorageData
     {
         public IStorage<T> Storage { get; }
 
@@ -70,9 +70,9 @@ namespace Rovecode.Lotos.Repositories
             return Storage.Search(e => e.Id == data.Id)!.Data;
         }
 
-        public bool Exist()
+        public bool Exists()
         {
-            return Storage.Exist(e => e.Id == Data.Id);
+            return Storage.Exists(e => e.Id == Data.Id);
         }
 
         public void Dispose()

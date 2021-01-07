@@ -5,7 +5,7 @@ using Rovecode.Lotos.Repositories;
 
 namespace Rovecode.Lotos.Contexts
 {
-    public class StorageContext : IStorageContext
+    internal class StorageContext : IStorageContext
     {
         private readonly IMongoDatabase _mongoDatabase;
 

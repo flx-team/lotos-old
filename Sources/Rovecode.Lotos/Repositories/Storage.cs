@@ -8,7 +8,7 @@ using Rovecode.Lotos.Models;
 
 namespace Rovecode.Lotos.Repositories
 {
-    public class Storage<T> : IStorage<T> where T : StorageData
+    internal class Storage<T> : IStorage<T> where T : StorageData
     {
         private readonly IMongoCollection<T> _mongoCollection;
 
@@ -33,7 +33,7 @@ namespace Rovecode.Lotos.Repositories
                 .CountDocuments(BuildWhereFilter(expression));
         }
 
-        public bool Exist(Expression<Func<T, bool>> expression)
+        public bool Exists(Expression<Func<T, bool>> expression)
         {
             return Count(expression) > 0;
         }
