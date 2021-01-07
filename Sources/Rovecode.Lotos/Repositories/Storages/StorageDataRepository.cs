@@ -3,7 +3,7 @@ using Rovecode.Lotos.Enums;
 using Rovecode.Lotos.Exceptions;
 using Rovecode.Lotos.Models;
 
-namespace Rovecode.Lotos.Repositories
+namespace Rovecode.Lotos.Repositories.Storages
 {
     internal class StorageDataRepository<T> : IStorageDataRepository<T> where T : StorageData
     {

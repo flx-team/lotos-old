@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Rovecode.Lotos.Models;
 
-namespace Rovecode.Lotos.Repositories
+namespace Rovecode.Lotos.Repositories.Storages
 {
     public interface IStorage<T> where T : StorageData
     {

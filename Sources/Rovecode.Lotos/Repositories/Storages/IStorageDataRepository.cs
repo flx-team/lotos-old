@@ -2,7 +2,7 @@
 using Rovecode.Lotos.Enums;
 using Rovecode.Lotos.Models;
 
-namespace Rovecode.Lotos.Repositories
+namespace Rovecode.Lotos.Repositories.Storages
 {
     /// <summary>
     /// Works with data object who contains in IStorage

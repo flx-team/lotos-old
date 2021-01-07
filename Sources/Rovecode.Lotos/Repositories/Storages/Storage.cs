@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MongoDB.Driver;
 using Rovecode.Lotos.Models;
 
-namespace Rovecode.Lotos.Repositories
+namespace Rovecode.Lotos.Repositories.Storages
 {
     internal class Storage<T> : IStorage<T> where T : StorageData
     {

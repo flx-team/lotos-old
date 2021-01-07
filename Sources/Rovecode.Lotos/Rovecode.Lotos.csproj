@@ -32,6 +32,10 @@
     <Folder Include="Factories\" />
     <Folder Include="Extensions\" />
     <Folder Include="Assets\" />
+    <Folder Include="Common\" />
+    <Folder Include="Common\Observers\" />
+    <Folder Include="Repositories\Storages\" />
+    <Folder Include="Repositories\Containers\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="..\..\Assets\stable_icon.png" />
