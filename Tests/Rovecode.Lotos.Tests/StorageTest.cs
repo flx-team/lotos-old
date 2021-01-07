@@ -31,13 +31,13 @@ namespace Rovecode.Lotos.Tests
             var user = _userStorage.Keep(userData);
 
             // check
-            Assert.True(user.Exist());
+            Assert.True(user.Exists());
 
             // delete
             user.Burn();
 
             // check
-            Assert.True(!user.Exist());
+            Assert.True(!user.Exists());
         }
     }
 }
