@@ -1,4 +1,5 @@
 ﻿using System;
+using Rovecode.Lotos.Common.Observers;
 using Rovecode.Lotos.Enums;
 using Rovecode.Lotos.Models;
 
@@ -8,7 +9,7 @@ namespace Rovecode.Lotos.Repositories.Storages
     /// Works with data object who contains in IStorage
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IStorageDataRepository<T> : IDisposable where T : StorageData
+    public interface IStorageDataRepository<T> : IObserver, IDisposable where T : StorageData
     {
         /// <summary>
         /// Storage related to this type of data.

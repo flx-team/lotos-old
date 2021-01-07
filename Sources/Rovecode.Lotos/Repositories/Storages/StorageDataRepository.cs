@@ -1,4 +1,5 @@
 ﻿using System;
+using Rovecode.Lotos.Common.Observers;
 using Rovecode.Lotos.Enums;
 using Rovecode.Lotos.Exceptions;
 using Rovecode.Lotos.Models;
@@ -81,6 +82,11 @@ namespace Rovecode.Lotos.Repositories.Storages
             {
                 Exchange();
             }
+        }
+
+        public void Update(ISubject subject)
+        {
+            
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MongoDB.Driver;
 using Rovecode.Lotos.Models;
+using Rovecode.Lotos.Repositories.Containers;
 
 namespace Rovecode.Lotos.Repositories.Storages
 {
@@ -12,9 +13,12 @@ namespace Rovecode.Lotos.Repositories.Storages
     {
         private readonly IMongoCollection<T> _mongoCollection;
 
-        public Storage(IMongoCollection<T> mongoCollection)
+        public IContainer Container { get; }
+
+        public Storage(IContainer container, IMongoCollection<T> mongoCollection)
         {
             _mongoCollection = mongoCollection;
+            Container = container;
         }
 
         public void Burn(Expression<Func<T, bool>> expression)

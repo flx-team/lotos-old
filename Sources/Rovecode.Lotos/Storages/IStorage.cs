@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Rovecode.Lotos.Containers;
 using Rovecode.Lotos.Models;
+using Rovecode.Lotos.Repositories.Storages;
 
-namespace Rovecode.Lotos.Repositories.Storages
+namespace Rovecode.Lotos.Storages
 {
     public interface IStorage<T> where T : StorageData
     {
+        public IContainer Container { get; }
+
         /// <summary>
         /// Saves the data to the database and returns a repository that works with it.
         /// </summary>
