@@ -3,6 +3,8 @@ using System.Linq;
 using Rovecode.Lotos.Factories;
 using Rovecode.Lotos.Models;
 using Rovecode.Lotos.Exceptions;
+using System.Collections.Generic;
+using Rovecode.Lotos.Repositories.Containers;
 
 namespace ConsoleAppExample
 {
@@ -39,6 +41,8 @@ namespace ConsoleAppExample
                 user.Data.LastName += new Random().Next(0, 100).ToString();
             }
 
+            IObservable<int>
+
             // user.Burn();
 
             Console.WriteLine($"{user.Data.FirstName} / {user.Data.LastName}");
@@ -60,6 +64,21 @@ namespace ConsoleAppExample
             Console.Clear();
 
             Main(args);
+            
+        }
+
+        void test()
+        {
+            var container = new Container(null);
+
+            container.Sandbox(() =>
+            {
+                var storage = container.GetStorage<UserData>();
+
+                container.PushCommand(null);
+
+                container.Sync();
+            });
         }
     }
 }
