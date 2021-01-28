@@ -1,21 +1,30 @@
 ﻿using System;
-using Rovecode.Lotos.Common.Observers;
+using System.Linq;
+using MongoDB.Bson;
+using MongoDB.Bson.IO;
 using Rovecode.Lotos.Enums;
-using Rovecode.Lotos.Exceptions;
 using Rovecode.Lotos.Models;
 
 namespace Rovecode.Lotos.Repositories.Storages
 {
-    internal class StorageDataRepository<T> : IStorageDataRepository<T> where T : StorageData
+    public class StorageDataRepository<T> : IStorageDataRepository<T> where T : StorageData
     {
         public IStorage<T> Storage { get; }
 
-        public T Data { get; private set; }
+        public T Data { get; }
 
         public StorageDataRepository(IStorage<T> storage, T data)
         {
             Storage = storage;
             Data = data;
+
+            var props = Data.GetType().GetProperties().Where(e => e.PropertyType.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IStoragePropertyNotifier<>)));
+
+            foreach (var item in props)
+            {
+                object? value = item.GetValue(Data, null);
+                item.PropertyType.GetMethod("Notify")?.Invoke(value, null);
+            }
         }
 
         public void Burn()
@@ -23,70 +32,9 @@ namespace Rovecode.Lotos.Repositories.Storages
             Storage.Burn(e => e.Id == Data.Id);
         }
 
-        public void Exchange()
-        {
-            Exchange(ExchangeMode.InOut);
-        }
-
-        public void Exchange(ExchangeMode mode)
-        {
-            switch (mode)
-            {
-                case ExchangeMode.InOut:
-                    Push(Data);
-                    Data = Recive(Data);
-                    break;
-                case ExchangeMode.In:
-                    Push(Data);
-                    break;
-                case ExchangeMode.Out:
-                    Data = Recive(Data);
-                    break;
-                default:
-                    Exchange();
-                    break;
-            }
-        }
-
-        public void Push(T data)
-        {
-            if (!Exists())
-            {
-                // TODO: Add exception text
-                throw new LotosException("");
-            }
-
-            var storage = (Storage as Storage<T>)!;
-
-            var collection = storage.GetMongoCollection();
-
-            var filter = storage.BuildWhereFilter(e => e.Id == data.Id);
-
-            collection.ReplaceOne(filter, data);
-
-        }
-
-        public T Recive(T data)
-        {
-            return Storage.Search(e => e.Id == data.Id)!.Data;
-        }
-
         public bool Exists()
         {
             return Storage.Exists(e => e.Id == Data.Id);
-        }
-
-        public void Dispose()
-        {
-            if (Exists())
-            {
-                Exchange();
-            }
-        }
-
-        public void Update(ISubject subject)
-        {
-            
         }
     }
 }

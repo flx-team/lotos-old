@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using Rovecode.Lotos.Models;
 using Rovecode.Lotos.Repositories;
+using Rovecode.Lotos.Repositories.Storages;
 
 namespace Rovecode.Lotos.Contexts
 {
@@ -16,7 +17,7 @@ namespace Rovecode.Lotos.Contexts
 
         public IStorage<T> Get<T>() where T : StorageData
         {
-            return new Storage<T>(_mongoDatabase.GetCollection<T>(typeof(T).Name));
+            return new Storage<T>(null!, _mongoDatabase.GetCollection<T>(typeof(T).Name));
         }
     }
 }

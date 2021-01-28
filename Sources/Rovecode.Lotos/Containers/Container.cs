@@ -10,20 +10,18 @@ namespace Rovecode.Lotos.Containers
     public class Container : IContainer
     {
         private readonly IMongoDatabase _mongoDatabase;
-        private readonly IClientSessionHandle _clientSessionHandle;
 
         private readonly List<INotifier<object>> _notifiers;
 
-        private readonly Queue<ICommand> _commands;
+        public IClientSessionHandle ClientSession { get; }
 
         public Container(IMongoDatabase mongoDatabase)
         {
             _mongoDatabase = mongoDatabase;
 
             _notifiers = new List<INotifier<object>>();
-            _commands = new Queue<ICommand>();
 
-            _clientSessionHandle = _mongoDatabase.Client.StartSession();
+            ClientSession = _mongoDatabase.Client.StartSession();
         }
 
         public IStorage<T> GetStorage<T>() where T : StorageData
@@ -33,25 +31,22 @@ namespace Rovecode.Lotos.Containers
 
         public void Init()
         {
-            _clientSessionHandle.StartTransaction();
+            ClientSession.StartTransaction();
         }
 
         public void Sync()
         {
-            foreach (var item in _commands)
-            {
-                item.Run();
-            }
+            // TODO
         }
 
         public void Fail()
         {
-            _clientSessionHandle.AbortTransaction();
+            ClientSession.AbortTransaction();
         }
 
         public void Ok()
         {
-            _clientSessionHandle.CommitTransaction();
+            ClientSession.CommitTransaction();
         }
 
         public void Sandbox(Action action)
@@ -72,14 +67,9 @@ namespace Rovecode.Lotos.Containers
             Dispose();
         }
 
-        public void PushCommand(ICommand command)
-        {
-            _commands.Enqueue(command);
-        }
-
         public void Dispose()
         {
-            _commands.Clear();
+
         }
     }
 }

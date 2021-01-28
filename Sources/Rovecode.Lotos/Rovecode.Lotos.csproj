@@ -32,11 +32,8 @@
     <Folder Include="Extensions\" />
     <Folder Include="Assets\" />
     <Folder Include="Common\" />
-    <Folder Include="Commands\" />
-    <Folder Include="Repositories\Mongo\" />
     <Folder Include="Containers\" />
     <Folder Include="Repositories\Storages\" />
-    <Folder Include="Storages\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="..\..\Assets\stable_icon.png" />
