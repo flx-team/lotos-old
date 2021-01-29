@@ -22,22 +22,17 @@ namespace ConsoleAppExample
 
             var container = context.CreateContainer();
 
-            container.Sandbox(e =>
+            var users = container.GetStorage<UserEntity>();
+
+            var user = users.Put(new()
             {
-                var users = e.GetStorage<UserEntity>();
-
-                var user = users.Put(new()
-                {
-                    FirstName = "Roman",
-                    LastName = "S",
-                });
-
-                throw new Exception();
-
-                user.Value.LastName = "Suslikov";
-
-                user.Push();
+                FirstName = "Roman",
+                LastName = "S",
             });
+
+            user.Value.LastName = "Suslikov";
+
+            user.Push();
         }
     }
 }
