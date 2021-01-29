@@ -1,22 +1,26 @@
 ﻿using System;
-using MongoDB.Driver;
-using Rovecode.Lotos.Common;
-using Rovecode.Lotos.Models;
-using Rovecode.Lotos.Repositories.Storages;
+using Rovecode.Lotos.Contexts;
+using Rovecode.Lotos.Entities;
+using Rovecode.Lotos.Repositories;
 
 namespace Rovecode.Lotos.Containers
 {
-    public interface IContainer : IDisposable
+    public interface IContainer
     {
-        public IClientSessionHandle ClientSession { get; }
+        public IStorageContext Context { get; }
 
-        public IStorage<T> GetStorage<T>() where T : StorageData;
+        public IStorage<T> GetStorage<T>() where T : StorageEntity;
 
-        public void Init();
-        public void Sync();
-        public void Fail();
-        public void Ok();
+        public void Run();
 
-        public void Sandbox(Action action);
+        public void Revert();
+
+        public void Commit();
+
+        public void Sandbox(Action<IContainer> action);
+
+        public void Attach<T>(ref IStorage<T> storage) where T : StorageEntity;
+
+        public void Attach<T>(ref IStorageEntityProvider<T> provider) where T : StorageEntity;
     }
 }

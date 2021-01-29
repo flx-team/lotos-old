@@ -1,75 +1,71 @@
 ﻿using System;
-using System.Collections.Generic;
 using MongoDB.Driver;
-using Rovecode.Lotos.Common;
-using Rovecode.Lotos.Models;
-using Rovecode.Lotos.Repositories.Storages;
+using Rovecode.Lotos.Contexts;
+using Rovecode.Lotos.Entities;
+using Rovecode.Lotos.Repositories;
 
 namespace Rovecode.Lotos.Containers
 {
     public class Container : IContainer
     {
-        private readonly IMongoDatabase _mongoDatabase;
-
-        private readonly List<INotifier<object>> _notifiers;
-
-        public IClientSessionHandle ClientSession { get; }
-
-        public Container(IMongoDatabase mongoDatabase)
+        public Container(IStorageContext storageContext)
         {
-            _mongoDatabase = mongoDatabase;
+            Context = storageContext;
 
-            _notifiers = new List<INotifier<object>>();
-
-            ClientSession = _mongoDatabase.Client.StartSession();
+            ClientSessionHandle = MongoDatabase.Client.StartSession();
         }
 
-        public IStorage<T> GetStorage<T>() where T : StorageData
+        public IStorageContext Context { get; }
+
+        public IClientSessionHandle ClientSessionHandle { get; }
+
+        public IMongoDatabase MongoDatabase => (Context as StorageContext)!.MongoDatabase;
+
+        public void Attach<T>(ref IStorage<T> storage) where T : StorageEntity
         {
-            return new Storage<T>(this, _mongoDatabase.GetCollection<T>(typeof(T).Name));
+            (storage as Storage<T>)!.Container = this;
         }
 
-        public void Init()
+        public void Attach<T>(ref IStorageEntityProvider<T> provider) where T : StorageEntity
         {
-            ClientSession.StartTransaction();
+            (provider.Storage as Storage<T>)!.Container = this;
         }
 
-        public void Sync()
+        public void Commit()
         {
-            // TODO
+            ClientSessionHandle.CommitTransaction();
         }
 
-        public void Fail()
+        public IStorage<T> GetStorage<T>() where T : StorageEntity
         {
-            ClientSession.AbortTransaction();
+            return new Storage<T>(this, MongoDatabase.GetCollection<T>(typeof(T).Name));
         }
 
-        public void Ok()
+        public void Revert()
         {
-            ClientSession.CommitTransaction();
+            ClientSessionHandle.AbortTransaction();
         }
 
-        public void Sandbox(Action action)
+        public void Run()
         {
+            ClientSessionHandle.StartTransaction();
+        }
+
+        public void Sandbox(Action<IContainer> action)
+        {
+            Run();
+
             try
             {
-                Init();
-                action.Invoke();
-                Sync();
-                Ok();
+                action.Invoke(this);
             }
             catch (Exception)
             {
-                Fail();
+                Revert();
                 throw;
             }
 
-            Dispose();
-        }
-
-        public void Dispose()
-        {
-
+            Commit();
         }
     }
 }

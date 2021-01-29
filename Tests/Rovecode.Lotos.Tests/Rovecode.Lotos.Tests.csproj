@@ -28,4 +28,7 @@
   <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Models\UniversalData.cs" />
+  </ItemGroup>
 </Project>

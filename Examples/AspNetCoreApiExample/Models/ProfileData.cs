@@ -1,9 +1,9 @@
 ﻿using System;
-using Rovecode.Lotos.Models;
+using Rovecode.Lotos.Entities;
 
 namespace AspNetCoreApiExample.Models
 {
-    public record ProfileData : StorageData
+    public class ProfileEntity : StorageEntity
     {
         public string Name { get; set; }
 
