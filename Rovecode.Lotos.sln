@@ -65,6 +65,6 @@ Global
 		{4B19FC8B-7B89-4673-892B-FB08AC69F771} = {551E3186-2258-4089-9AA1-7617E98EAFC7}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		version = 0.2.0
+		version = 0.3.0
 	EndGlobalSection
 EndGlobal
