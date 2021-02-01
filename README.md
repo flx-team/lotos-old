@@ -1,5 +1,7 @@
 # Rovecode.Lotos 
 
+[![Rovecode.Lotos on fuget.org](https://www.fuget.org/packages/Rovecode.Lotos/badge.svg)](https://www.fuget.org/packages/Rovecode.Lotos)
+
 !!!!TODO
 
 ## Features
