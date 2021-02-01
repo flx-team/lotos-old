@@ -19,8 +19,10 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build
+    - name: Build Sources
       run: dotnet build Sources/Rovecode.Lotos --configuration Release --no-restore
+    - name: Build Tests
+      run: dotnet build Tests/Rovecode.Lotos.Tests --no-restore
     - name: Test
       run: dotnet test Tests/Rovecode.Lotos.Tests --no-build --verbosity normal
     - name: Publish NuGet
