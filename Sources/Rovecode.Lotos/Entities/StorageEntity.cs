@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
+using Rovecode.Lotos.Exceptions;
 using Rovecode.Lotos.Repositories;
 
 namespace Rovecode.Lotos.Entities
@@ -12,16 +13,6 @@ namespace Rovecode.Lotos.Entities
     {
         [BsonId]
         public Guid Id { get; internal set; }
-
-        //[BsonIgnore]
-        //[JsonIgnore]
-        //[Newtonsoft.Json.JsonIgnore]
-        //public IStorage<T> Storage { get;
-
-        //[BsonIgnore]
-        //[JsonIgnore]
-        //[Newtonsoft.Json.JsonIgnore]
-        //public IStorageEntityRepository<T> Repository { get; internal set; } = null!;
 
         [BsonIgnore]
         [JsonIgnore]
@@ -33,19 +24,36 @@ namespace Rovecode.Lotos.Entities
             return Storage.Exists(Id);
         }
 
-        public Task Push()
+        public async Task Push()
         {
-            return Storage.Push((T)this!);
+            if (!await Exists())
+            {
+                throw new LotosException("Current entity store in db");
+            }
+
+            await Storage.Push((T)this!);
         }
 
-        public Task Remove()
+        public async Task Remove()
         {
-            return Storage.Remove(Id);
+            if (!await Exists())
+            {
+                throw new LotosException("Current entity store in db");
+            }
+
+            await Storage.Remove(Id);
         }
 
-        public Task<T> Pull()
+        public async Task<T> Pull()
         {
-            return Storage.Pick(Id)!;
+            var result = await Storage.Pick(Id);
+
+            if (result is null)
+            {
+                throw new LotosException("Current entity store in db");
+            }
+
+            return result!;
         }
     }
 }
