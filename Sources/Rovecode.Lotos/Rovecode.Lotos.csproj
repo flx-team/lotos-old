@@ -6,13 +6,13 @@
     <WarningsAsErrors>nullable</WarningsAsErrors>
     <PackOnBuild>true</PackOnBuild>
     <Authors>Roman S</Authors>
-    <Description>Heir to Crassula, but with new ideas and full support for NET 5.</Description>
+    <Description>Easy library for work with Mongo DB in ASP.NET. Full support for NET 5. Nullsafe.</Description>
     <Copyright>Roman S</Copyright>
     <Owners>Roman S</Owners>
     <Title>Rovecode.Lotos</Title>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <ReleaseVersion>1.2.0</ReleaseVersion>
-    <PackageVersion>1.2.0</PackageVersion>
+    <ReleaseVersion>2.0.0</ReleaseVersion>
+    <PackageVersion>2.0.0</PackageVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <PackageIcon>stable_icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
