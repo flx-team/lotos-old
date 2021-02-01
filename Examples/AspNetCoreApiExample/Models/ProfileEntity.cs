@@ -10,5 +10,10 @@ namespace AspNetCoreApiExample.Models
         public string Email { get; set; }
 
         public int Phone { get; set; }
+
+        public void IncrementPhone()
+        {
+            Phone++;
+        }
     }
 }

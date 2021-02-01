@@ -70,6 +70,15 @@ namespace Rovecode.Lotos.Extensions
 
         private static void AddRepositories(this IServiceCollection services, Assembly assembly)
         {
+            var repositoryTypes = assembly.GetTypes()
+                .Where(x => x.IsClass && !x.IsAbstract && x.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IStorage<>)))
+                .ToArray();
+
+            foreach (var type in repositoryTypes)
+            {
+                services.AddScoped(type);
+            }
+
             services.AddScoped(typeof(IStorage<>), typeof(Storage<>));
         }
 

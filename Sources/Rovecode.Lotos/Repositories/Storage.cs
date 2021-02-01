@@ -63,7 +63,7 @@ namespace Rovecode.Lotos.Repositories
             if (result is null) return null;
 
             var repository = new StorageEntityRepository<T>(this, result);
-            result.Repository = repository;
+            result.Storage = this;
 
             return result;
         }
@@ -78,7 +78,7 @@ namespace Rovecode.Lotos.Repositories
             if (result is null) return null;
 
             var repository = new StorageEntityRepository<T>(this, result);
-            result.Repository = repository;
+            result.Storage = this;
 
             return result;
         }
@@ -88,11 +88,11 @@ namespace Rovecode.Lotos.Repositories
             var result = await _context.Collection.Find(expression)
                 .ToListAsync();
 
-            foreach (var item in result)
+            result.ForEach(e =>
             {
-                var repository = new StorageEntityRepository<T>(this, item);
-                item.Repository = repository;
-            }
+                var repository = new StorageEntityRepository<T>(this, e);
+                e.Storage = this;
+            });
 
             return result;
         }
@@ -102,11 +102,11 @@ namespace Rovecode.Lotos.Repositories
             var result = await _context.Collection.Find(StorageUtils.BuildIdsFilter<T>(ids))
                 .ToListAsync();
 
-            foreach (var item in result)
+            result.ForEach(e =>
             {
-                var repository = new StorageEntityRepository<T>(this, item);
-                item.Repository = repository;
-            }
+                var repository = new StorageEntityRepository<T>(this, e);
+                e.Storage = this;
+            });
 
             return result;
         }
@@ -129,7 +129,7 @@ namespace Rovecode.Lotos.Repositories
 
             var repository = new StorageEntityRepository<T>(this, entity);
 
-            entity.Repository = repository;
+            entity.Storage = this;
         }
 
         public async Task Remove(Expression<Func<T, bool>> expression)

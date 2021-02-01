@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Storages\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Sources\Rovecode.Lotos\Rovecode.Lotos.csproj">

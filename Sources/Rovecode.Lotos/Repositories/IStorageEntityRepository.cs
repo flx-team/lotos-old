@@ -14,6 +14,6 @@ namespace Rovecode.Lotos.Repositories
 
         public Task Push();
 
-        // public Task Pull();
+        public Task<T> Pull();
     }
 }

@@ -30,5 +30,10 @@ namespace Rovecode.Lotos.Repositories
         {
             return Storage.Remove(_entity.Id);
         }
+
+        public Task<T> Pull()
+        {
+            return Storage.Pick(_entity.Id)!;
+        }
     }
 }
