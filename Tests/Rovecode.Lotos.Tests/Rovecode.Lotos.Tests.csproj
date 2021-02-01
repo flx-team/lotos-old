@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Sources\Rovecode.Lotos\Rovecode.Lotos.csproj" />
-    <ProjectReference Include="..\..\Sources\Rovecode.Lotos.DependencyInjection\Rovecode.Lotos.DependencyInjection.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

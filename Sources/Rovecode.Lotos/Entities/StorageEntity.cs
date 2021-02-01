@@ -1,17 +1,26 @@
 ﻿using System;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.IdGenerators;
+using Rovecode.Lotos.Repositories;
 
 namespace Rovecode.Lotos.Entities
 {
-    public abstract class StorageEntity
+    public abstract class StorageEntity<T> : IEntity where T : StorageEntity<T>
     {
         [BsonId]
-        public ObjectId Id { get; }
+        public Guid Id { get; internal set; }
 
-        public StorageEntity()
-        {
-            Id = ObjectId.GenerateNewId();
-        }
+        [BsonIgnore]
+        [JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
+        public IStorage<T> Storage => Repository.Storage;
+
+        [BsonIgnore]
+        [JsonIgnore]
+        [Newtonsoft.Json.JsonIgnore]
+        public IStorageEntityRepository<T> Repository { get; internal set; } = null!;
     }
 }

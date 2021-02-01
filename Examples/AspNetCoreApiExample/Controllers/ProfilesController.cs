@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using AspNetCoreApiExample.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Rovecode.Lotos.Containers;
 using Rovecode.Lotos.Contexts;
 using Rovecode.Lotos.Repositories;
 
@@ -18,11 +17,11 @@ namespace AspNetCoreApiExample.Controllers
         private readonly ILogger<ProfilesController> _logger;
         private readonly IStorage<ProfileEntity> _profileStorage;
 
-        public ProfilesController(ILogger<ProfilesController> logger, IContainer storageContext)
+        public ProfilesController(ILogger<ProfilesController> logger, IStorage<ProfileEntity> profileStorage)
         {
             _logger = logger;
 
-            _profileStorage = storageContext.GetStorage<ProfileEntity>();
+            _profileStorage = profileStorage;
         }
 
         [HttpPost("add")]
@@ -34,17 +33,30 @@ namespace AspNetCoreApiExample.Controllers
         }
 
         [HttpGet("list")]
-        public IEnumerable<ProfileEntity> GetAllProfiles()
+        public async Task<IEnumerable<ProfileEntity>> GetAllProfilesAsync()
         {
-            return _profileStorage.PickMany(e => true)
-                .Select(e => e.Value);
+            var profile = new ProfileEntity
+            {
+                Name = "Roman",
+                Email = "suslikov@gm.com",
+                Phone = 434352,
+            };
+
+            await _profileStorage.Put(profile);
+
+            profile.Name = "Roman S";
+
+            await profile.Repository.Push();
+
+            var ents = await _profileStorage.PickMany();
+
+            return ents;
         }
 
         [HttpGet("listWhereName")]
         public IEnumerable<ProfileEntity> GetAllProfiles(string name)
         {
-            return _profileStorage.PickMany(e => e.Name == name)
-                .Select(e => e.Value);
+            return null!;
         }
     }
 }

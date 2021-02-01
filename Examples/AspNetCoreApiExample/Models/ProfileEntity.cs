@@ -3,7 +3,7 @@ using Rovecode.Lotos.Entities;
 
 namespace AspNetCoreApiExample.Models
 {
-    public class ProfileEntity : StorageEntity
+    public sealed class ProfileEntity : StorageEntity<ProfileEntity>
     {
         public string Name { get; set; }
 

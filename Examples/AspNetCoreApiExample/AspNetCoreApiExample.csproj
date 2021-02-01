@@ -21,8 +21,5 @@
     <ProjectReference Include="..\..\Sources\Rovecode.Lotos\Rovecode.Lotos.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
-    <ProjectReference Include="..\..\Sources\Rovecode.Lotos.DependencyInjection\Rovecode.Lotos.DependencyInjection.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
   </ItemGroup>
 </Project>

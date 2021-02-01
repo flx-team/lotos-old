@@ -1,171 +1,155 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using Rovecode.Lotos.Entities;
-using Rovecode.Lotos.Containers;
+using Rovecode.Lotos.Contexts;
+using Rovecode.Lotos.Utils;
+using Rovecode.Lotos.Repositories;
 
 namespace Rovecode.Lotos.Repositories
 {
-    public class Storage<T> : IStorage<T> where T : StorageEntity
+    public class Storage<T> : IStorage<T> where T : StorageEntity<T>
     {
-        public IContainer Container { get; internal set; }
+        private readonly StorageContext<T> _context;
 
-        private readonly IMongoCollection<T> _mongoCollection;
-
-        public Storage(IContainer container, IMongoCollection<T> mongoCollection)
+        public Storage(StorageContext<T> storageContext)
         {
-            Container = container;
-            _mongoCollection = mongoCollection;
+            _context = storageContext;
         }
 
-        public Container GetContainer()
+        public async Task<long> Count(Expression<Func<T, bool>> expression)
         {
-            return (Container as Container)!;
+            long count = await _context.Collection.CountDocumentsAsync(expression);
+
+            return count;
         }
 
-        public IMongoCollection<T> GetMongoCollection()
+        public async Task<bool> Exists(Expression<Func<T, bool>> expression)
         {
-            return _mongoCollection;
+            var options = new CountOptions { Limit = 1 };
+
+            long count = await _context.Collection.CountDocumentsAsync(expression, options);
+
+            return count != 0;
         }
 
-        public int Count(Expression<Func<T, bool>> expression)
+        public async Task<bool> Exists(Guid id)
         {
-            var session = GetContainer().ClientSessionHandle;
+            var filter = StorageUtils.BuildIdFilter<T>(id);
+            var options = new CountOptions { Limit = 1 };
 
-            var filter = BuildWhereFilter(expression);
+            long count = await _context.Collection.CountDocumentsAsync(filter, options);
 
-            return (int)_mongoCollection.CountDocuments(session, filter);
+            return count != 0;
         }
 
-        public bool Exists(Expression<Func<T, bool>> expression)
+        public async Task<bool> Exists(params Guid[] ids)
         {
-            return Count(expression) > 0;
+            var filter = StorageUtils.BuildIdsFilter<T>(ids);
+            var options = new CountOptions { Limit = 1 };
+
+            long count = await _context.Collection.CountDocumentsAsync(filter, options);
+
+            return count != 0;
         }
 
-        public bool Exists(ObjectId id)
+        public async Task<T?> Pick(Expression<Func<T, bool>> expression)
         {
-            return Count(e => e.Id == id) > 0;
+            var result = await _context.Collection.Find(expression)
+                .FirstOrDefaultAsync();
+
+            if (result is null) return null;
+
+            var repository = new StorageEntityRepository<T>(this, result);
+            result.Repository = repository;
+
+            return result;
         }
 
-        public bool Exists(IEnumerable<ObjectId> ids)
+        public async Task<T?> Pick(Guid id)
         {
-            return Count(e => ids.Contains(e.Id)) > 0;
+            var filter = StorageUtils.BuildIdFilter<T>(id);
+
+            var result = await _context.Collection.Find(StorageUtils.BuildIdFilter<T>(id))
+                .FirstOrDefaultAsync();
+
+            if (result is null) return null;
+
+            var repository = new StorageEntityRepository<T>(this, result);
+            result.Repository = repository;
+
+            return result;
         }
 
-        public bool Exists(params ObjectId[] ids)
+        public async Task<IEnumerable<T>> PickMany(Expression<Func<T, bool>> expression)
         {
-            return Count(e => ids.Contains(e.Id)) > 0;
+            var result = await _context.Collection.Find(expression)
+                .ToListAsync();
+
+            foreach (var item in result)
+            {
+                var repository = new StorageEntityRepository<T>(this, item);
+                item.Repository = repository;
+            }
+
+            return result;
         }
 
-        public IStorageEntityProvider<T>? Pick(Expression<Func<T, bool>> expression, int offset = 0)
+        public async Task<IEnumerable<T>> PickMany(params Guid[] ids)
         {
-            var result = PickMany(expression, offset, 1);
+            var result = await _context.Collection.Find(StorageUtils.BuildIdsFilter<T>(ids))
+                .ToListAsync();
 
-            return result.FirstOrDefault();
+            foreach (var item in result)
+            {
+                var repository = new StorageEntityRepository<T>(this, item);
+                item.Repository = repository;
+            }
+
+            return result;
         }
 
-        public IStorageEntityProvider<T>? Pick(ObjectId id)
+        public Task<IEnumerable<T>> PickMany()
         {
-            return Pick(e => e.Id == id);
+            return PickMany(e => true);
         }
 
-        public Task<IStorageEntityProvider<T>?> PickAsync(Expression<Func<T, bool>> expression, int offset = 0)
+        public async Task Push(T entity)
         {
-            return Task.Run(() => Pick(expression, offset));
+            await _context.Collection.ReplaceOneAsync(StorageUtils.BuildIdFilter<T>(entity.Id), entity);
         }
 
-        public Task<IStorageEntityProvider<T>?> PickAsync(ObjectId id)
+        public async Task Put(T entity)
         {
-            return Task.Run(() => Pick(id));
+            entity.Id = Guid.NewGuid();
+
+            await _context.Collection.InsertOneAsync(entity);
+
+            var repository = new StorageEntityRepository<T>(this, entity);
+
+            entity.Repository = repository;
         }
 
-        public IEnumerable<IStorageEntityProvider<T>> PickMany(Expression<Func<T, bool>> expression, int offset = 0, int count = int.MaxValue)
+        public async Task Remove(Expression<Func<T, bool>> expression)
         {
-            var session = GetContainer().ClientSessionHandle;
-
-            var filter = BuildWhereFilter(expression);
-
-            var result = _mongoCollection.Find(session, filter)
-                .Skip(offset).Limit(count);
-
-            var prividers = result.ToEnumerable()
-                .Select(e => new StorageEntityProvider<T>(this, e));
-
-            return prividers;
+            await _context.Collection.DeleteOneAsync(expression);
         }
 
-        public IEnumerable<IStorageEntityProvider<T>> PickMany(IEnumerable<ObjectId> ids)
+        public async Task Remove(Guid id)
         {
-            return PickMany(e => ids.Contains(e.Id));
+            await _context.Collection.DeleteOneAsync(StorageUtils.BuildIdFilter<T>(id));
         }
 
-        public IEnumerable<IStorageEntityProvider<T>> PickMany(params ObjectId[] ids)
+        public async Task RemoveMany(Expression<Func<T, bool>> expression)
         {
-            return PickMany(e => ids.Contains(e.Id));
+            await _context.Collection.DeleteManyAsync(expression);
         }
 
-        public Task<IEnumerable<IStorageEntityProvider<T>>> PickManyAsync(Expression<Func<T, bool>> expression, int offset = 0, int count = int.MaxValue)
+        public async Task RemoveMany(params Guid[] ids)
         {
-            return Task.Run(() => PickMany(expression, offset, count));
-        }
-
-        public Task<IEnumerable<IStorageEntityProvider<T>>> PickManyAsync(IEnumerable<ObjectId> ids)
-        {
-            return Task.Run(() => PickMany(ids));
-        }
-
-        public Task<IEnumerable<IStorageEntityProvider<T>>> PickManyAsync(params ObjectId[] ids)
-        {
-            return Task.Run(() => PickMany(ids));
-        }
-
-        public IStorageEntityProvider<T> Put(T entity)
-        {
-            _mongoCollection.InsertOne(GetContainer().ClientSessionHandle, entity);
-
-            return new StorageEntityProvider<T>(this, entity);
-        }
-
-        public void Remove(Expression<Func<T, bool>> expression)
-        {
-            var session = GetContainer().ClientSessionHandle;
-
-            var filter = BuildWhereFilter(expression);
-
-            _mongoCollection.DeleteOne(session, filter);
-        }
-
-        public void Remove(ObjectId id)
-        {
-            Remove(e => e.Id == id);
-        }
-
-        public void RemoveMany(Expression<Func<T, bool>> expression)
-        {
-            var session = GetContainer().ClientSessionHandle;
-
-            var filter = BuildWhereFilter(expression);
-
-            _mongoCollection.DeleteMany(session, filter);
-        }
-
-        public void RemoveMany(IEnumerable<ObjectId> ids)
-        {
-            RemoveMany(e => ids.Contains(e.Id));
-        }
-
-        public void RemoveMany(params ObjectId[] ids)
-        {
-            RemoveMany(e => ids.Contains(e.Id));
-        }
-
-        public FilterDefinition<T> BuildWhereFilter(Expression<Func<T, bool>> expression)
-        {
-            return Builders<T>.Filter.Where(expression);
+            await _context.Collection.DeleteOneAsync(StorageUtils.BuildIdsFilter<T>(ids));
         }
     }
 }
