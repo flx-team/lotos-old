@@ -20,11 +20,12 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build Sources/Rovecode.Lotos --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
-    - name: Nuget
-      uses: NuGet/setup-nuget@v1.0.5
+      run: dotnet test Tests/Rovecode.Lotos.Tests --no-build --verbosity normal
+    - name: Publish NuGet
+      uses: brandedoutcast/publish-nuget@v2.5.5
       with:
-          nuget-api-key: oy2hwwfgfeqz3zwa7mdqnbr3usb3ksbedjqegogbw7hwfu
-          nuget-api-key-source: Rovecode.Lotos
+        PROJECT_FILE_PATH: Sources/Rovecode.Lotos/Rovecode.Lotos.slh
+        PACKAGE_NAME: Rovecode.Lotos
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
