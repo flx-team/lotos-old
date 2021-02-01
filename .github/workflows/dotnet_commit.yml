@@ -1,4 +1,4 @@
-name: .NET-Commit
+name: .NET Commit
 
 on:
   push:
