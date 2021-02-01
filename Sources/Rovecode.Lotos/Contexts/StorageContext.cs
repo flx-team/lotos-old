@@ -1,23 +1,17 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
-using Rovecode.Lotos.Models;
-using Rovecode.Lotos.Repositories;
-using Rovecode.Lotos.Repositories.Storages;
+using Rovecode.Lotos.Entities;
 
 namespace Rovecode.Lotos.Contexts
 {
-    internal class StorageContext : IStorageContext
+    public class StorageContext<T> where T : StorageEntity<T>
     {
-        private readonly IMongoDatabase _mongoDatabase;
+        internal IMongoCollection<T> Collection { get; }
 
         public StorageContext(IMongoDatabase mongoDatabase)
         {
-            _mongoDatabase = mongoDatabase;
-        }
-
-        public IStorage<T> Get<T>() where T : StorageData
-        {
-            return new Storage<T>(null!, _mongoDatabase.GetCollection<T>(typeof(T).Name));
+            Collection = mongoDatabase.GetCollection<T>(typeof(T).Name);
         }
     }
 }

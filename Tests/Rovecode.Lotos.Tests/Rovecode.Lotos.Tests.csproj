@@ -4,7 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
-    <ReleaseVersion>0.2.0</ReleaseVersion>
+    <ReleaseVersion>0.3.0</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,9 +23,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Sources\Rovecode.Lotos\Rovecode.Lotos.csproj" />
-    <ProjectReference Include="..\..\Sources\Rovecode.Lotos.DependencyInjection\Rovecode.Lotos.DependencyInjection.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Models\UniversalData.cs" />
   </ItemGroup>
 </Project>

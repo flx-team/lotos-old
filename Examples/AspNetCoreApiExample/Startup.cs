@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Rovecode.Lotos.DependencyInjection.Extensions;
+using Rovecode.Lotos.Extensions;
 
 namespace AspNetCoreApiExample
 {
@@ -27,8 +27,7 @@ namespace AspNetCoreApiExample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add lotos
-            services.AddLotos("mongodb://localhost:27017", "LotosTestAsp");
+            services.AddLotos();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

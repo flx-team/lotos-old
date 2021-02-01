@@ -11,8 +11,8 @@
     <Owners>Roman S</Owners>
     <Title>Rovecode.Lotos</Title>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <ReleaseVersion>1.1.0</ReleaseVersion>
-    <PackageVersion>1.1.0</PackageVersion>
+    <ReleaseVersion>1.2.0</ReleaseVersion>
+    <PackageVersion>1.2.0</PackageVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <PackageIcon>stable_icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -21,19 +21,18 @@
 
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.11.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositories\" />
-    <Folder Include="Models\" />
-    <Folder Include="Enums\" />
-    <Folder Include="Contexts\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="Factories\" />
-    <Folder Include="Extensions\" />
     <Folder Include="Assets\" />
-    <Folder Include="Common\" />
-    <Folder Include="Containers\" />
-    <Folder Include="Repositories\Storages\" />
+    <Folder Include="Contexts\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="..\..\Assets\stable_icon.png" />

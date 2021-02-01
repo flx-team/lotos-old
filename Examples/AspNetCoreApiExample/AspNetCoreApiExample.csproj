@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <ReleaseVersion>0.2.0</ReleaseVersion>
+    <ReleaseVersion>0.3.0</ReleaseVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -16,12 +16,10 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Storages\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Sources\Rovecode.Lotos\Rovecode.Lotos.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Sources\Rovecode.Lotos.DependencyInjection\Rovecode.Lotos.DependencyInjection.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>

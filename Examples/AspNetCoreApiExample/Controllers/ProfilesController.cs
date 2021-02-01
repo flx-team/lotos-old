@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCoreApiExample.Models;
+using AspNetCoreApiExample.Storages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Rovecode.Lotos.Contexts;
@@ -15,35 +16,56 @@ namespace AspNetCoreApiExample.Controllers
     public class ProfilesController : ControllerBase
     {
         private readonly ILogger<ProfilesController> _logger;
-        private readonly IStorage<ProfileData> _profileStorage;
+        private readonly UserStorage _profileStorage;
 
-        public ProfilesController(ILogger<ProfilesController> logger, IStorageContext storageContext)
+        public ProfilesController(ILogger<ProfilesController> logger, UserStorage profileStorage)
         {
             _logger = logger;
 
-            _profileStorage = storageContext.Get<ProfileData>();
+            _profileStorage = profileStorage;
         }
 
         [HttpPost("add")]
-        public IActionResult PostAddProfile([FromBody] ProfileData profileData)
+        public async Task<IActionResult> PostAddProfile([FromBody] ProfileEntity profileData)
         {
-            _profileStorage.Keep(profileData);
+            await _profileStorage.Put(profileData);
 
             return Ok();
         }
 
         [HttpGet("list")]
-        public IEnumerable<ProfileData> GetAllProfiles()
+        public async Task<IEnumerable<ProfileEntity>> GetAllProfilesAsync()
         {
-            return _profileStorage.SearchMany(e => true)
-                .Select(e => e.Data);
+            var profile = new ProfileEntity
+            {
+                Name = "Roman",
+                Email = "suslikov@gm.com",
+                Phone = 434352,
+            };
+
+            await _profileStorage.Put(profile);
+
+            profile.Name = "Roman S";
+
+            await profile.Push();
+
+            var profile2 = await profile.Pull();
+
+            profile2.Name = "Hohol";
+
+            await profile2.Push();
+
+            var ents = await _profileStorage.PickMany();
+
+            _logger.LogInformation((await _profileStorage.CustomCount()).ToString());
+
+            return ents;
         }
 
         [HttpGet("listWhereName")]
-        public IEnumerable<ProfileData> GetAllProfiles(string name)
+        public IEnumerable<ProfileEntity> GetAllProfiles(string name)
         {
-            return _profileStorage.SearchMany(e => e.Name == name)
-                .Select(e => e.Data);
+            return null!;
         }
     }
 }
