@@ -1,6 +1,8 @@
 # Rovecode.Lotos 
 
 [![Rovecode.Lotos on fuget.org](https://www.fuget.org/packages/Rovecode.Lotos/badge.svg)](https://www.fuget.org/packages/Rovecode.Lotos)
+![Build Status](https://img.shields.io/github/workflow/status/rovecode/Rovecode.Lotos/.NET)
+
 
 !!!!TODO
 
