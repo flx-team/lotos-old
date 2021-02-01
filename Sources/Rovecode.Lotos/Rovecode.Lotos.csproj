@@ -11,12 +11,12 @@
     <Owners>Roman S</Owners>
     <Title>Rovecode.Lotos</Title>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <ReleaseVersion>0.3.0</ReleaseVersion>
+    <ReleaseVersion>2.0.2</ReleaseVersion>
     <PackageVersion>2.0.1</PackageVersion>
-    <Version>2.0.1</Version>
     <PackageIcon>stable_icon.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>
