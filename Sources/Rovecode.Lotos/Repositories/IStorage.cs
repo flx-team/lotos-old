@@ -8,9 +8,9 @@ namespace Rovecode.Lotos.Repositories
 {
     public interface IStorage<T> where T : StorageEntity<T>
     {
-        public Task Put(T entity);
+        public Task<T> Put(T entity);
 
-        public Task<T> Push(T entity);
+        public Task Push(T entity);
 
         public Task<T?> Pick(Expression<Func<T, bool>> expression);
         public Task<T?> Pick(Guid id);
