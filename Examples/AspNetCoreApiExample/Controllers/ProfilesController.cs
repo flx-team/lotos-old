@@ -34,7 +34,7 @@ namespace AspNetCoreApiExample.Controllers
         }
 
         [HttpGet("list")]
-        public async Task<IEnumerable<ProfileEntity>> GetAllProfilesAsync()
+        public Task<IEnumerable<ProfileEntity>> GetAllProfilesAsync()
         {
             return null!;
         }
