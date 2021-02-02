@@ -22,7 +22,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rovecode.Lotos.Tests", "Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore", "Examples\AspNetCore\AspNetCore.csproj", "{CE460CBA-E633-40A6-8861-412CD1A723D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore", "Examples\AspNetCore\AspNetCore.csproj", "{F9E424A7-73AB-4F4A-B7E3-1EBFDBE61141}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreX", "Examples\AspNetCore\AspNetCoreX.csproj", "{F9E424A7-73AB-4F4A-B7E3-1EBFDBE61141}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
