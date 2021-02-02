@@ -1,8 +1,8 @@
-name: .NET
+name: .NET-Publish
 
 on:
   release:
-    types: [published, created, edited]
+    types: published
 
 jobs:
   build:

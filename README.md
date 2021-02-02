@@ -1,13 +1,12 @@
 # Rovecode.Lotos 
 
-![Build Status](https://img.shields.io/github/workflow/status/rovecode/Rovecode.Lotos/.NET)
+[![Commit Build Status](https://img.shields.io/github/workflow/status/rovecode/Rovecode.Lotos/.NET-Commit)](https://www.fuget.org/packages/Rovecode.Lotos)
+[![Release Build Status](https://img.shields.io/github/workflow/status/rovecode/Rovecode.Lotos/.NET-Publish)](https://www.fuget.org/packages/Rovecode.Lotos)
 [![Rovecode.Lotos on fuget.org](https://www.fuget.org/packages/Rovecode.Lotos/badge.svg)](https://www.fuget.org/packages/Rovecode.Lotos)
+[![Code Factory](https://img.shields.io/codefactor/grade/github/rovecode/Rovecode.Lotos/master)](https://www.fuget.org/packages/Rovecode.Lotos)
 
-!!!!TODO
 
 ## Features
-
-!!!!TODO
 
 ## Code Example
 
