@@ -20,8 +20,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreApiExample", "Exa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rovecode.Lotos.Tests", "Tests\Rovecode.Lotos.Tests\Rovecode.Lotos.Tests.csproj", "{4B19FC8B-7B89-4673-892B-FB08AC69F771}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore", "Examples\AspNetCore\AspNetCore.csproj", "{CE460CBA-E633-40A6-8861-412CD1A723D5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
