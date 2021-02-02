@@ -36,30 +36,7 @@ namespace AspNetCoreApiExample.Controllers
         [HttpGet("list")]
         public async Task<IEnumerable<ProfileEntity>> GetAllProfilesAsync()
         {
-            var profile = new ProfileEntity
-            {
-                Name = "Roman",
-                Email = "suslikov@gm.com",
-                Phone = 434352,
-            };
-
-            await _profileStorage.Put(profile);
-
-            profile.Name = "Roman S";
-
-            await profile.Push();
-
-            var profile2 = await profile.Pull();
-
-            profile2.Name = "Hohol";
-
-            await profile2.Push();
-
-            var ents = await _profileStorage.PickMany();
-
-            _logger.LogInformation((await _profileStorage.CustomCount()).ToString());
-
-            return ents;
+            return null!;
         }
 
         [HttpGet("listWhereName")]

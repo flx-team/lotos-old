@@ -20,6 +20,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreApiExample", "Exa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rovecode.Lotos.Tests", "Tests\Rovecode.Lotos.Tests\Rovecode.Lotos.Tests.csproj", "{4B19FC8B-7B89-4673-892B-FB08AC69F771}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore", "Examples\AspNetCore\AspNetCore.csproj", "{CE460CBA-E633-40A6-8861-412CD1A723D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore", "Examples\AspNetCore\AspNetCore.csproj", "{F9E424A7-73AB-4F4A-B7E3-1EBFDBE61141}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +42,14 @@ Global
 		{4B19FC8B-7B89-4673-892B-FB08AC69F771}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B19FC8B-7B89-4673-892B-FB08AC69F771}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B19FC8B-7B89-4673-892B-FB08AC69F771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE460CBA-E633-40A6-8861-412CD1A723D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE460CBA-E633-40A6-8861-412CD1A723D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE460CBA-E633-40A6-8861-412CD1A723D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE460CBA-E633-40A6-8861-412CD1A723D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9E424A7-73AB-4F4A-B7E3-1EBFDBE61141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9E424A7-73AB-4F4A-B7E3-1EBFDBE61141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9E424A7-73AB-4F4A-B7E3-1EBFDBE61141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9E424A7-73AB-4F4A-B7E3-1EBFDBE61141}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +61,8 @@ Global
 		{BCE64FC3-CDB0-4F5F-8E59-8605D5126AA2} = {E3EA3428-7F00-47C6-8574-2E3C79DDDC18}
 		{7FC9A92A-7A34-4183-851F-2711DA44E07E} = {6ABD8602-5A7F-488A-8C40-1778245EB17C}
 		{4B19FC8B-7B89-4673-892B-FB08AC69F771} = {551E3186-2258-4089-9AA1-7617E98EAFC7}
+		{CE460CBA-E633-40A6-8861-412CD1A723D5} = {6ABD8602-5A7F-488A-8C40-1778245EB17C}
+		{F9E424A7-73AB-4F4A-B7E3-1EBFDBE61141} = {6ABD8602-5A7F-488A-8C40-1778245EB17C}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		version = 1.0.0

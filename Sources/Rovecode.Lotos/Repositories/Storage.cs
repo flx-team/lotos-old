@@ -121,7 +121,7 @@ namespace Rovecode.Lotos.Repositories
             await _context.Collection.ReplaceOneAsync(StorageUtils.BuildIdFilter<T>(entity.Id), entity);
         }
 
-        public async Task Put(T entity)
+        public async Task<T> Put(T entity)
         {
             entity.Id = Guid.NewGuid();
 
@@ -130,6 +130,8 @@ namespace Rovecode.Lotos.Repositories
             var repository = new StorageEntityRepository<T>(this, entity);
 
             entity.Storage = this;
+
+            return entity;
         }
 
         public async Task Remove(Expression<Func<T, bool>> expression)

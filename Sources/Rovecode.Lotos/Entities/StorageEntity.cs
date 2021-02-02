@@ -21,7 +21,7 @@ namespace Rovecode.Lotos.Entities
 
         public Task<bool> Exists()
         {
-            return Storage.Exists(Id);
+            return Storage.Exists(id: Id);
         }
 
         public async Task Push()
