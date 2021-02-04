@@ -5,9 +5,8 @@
 [![Rovecode.Lotos on fuget.org](https://www.fuget.org/packages/Rovecode.Lotos/badge.svg)](https://www.fuget.org/packages/Rovecode.Lotos)
 [![Code Factory](https://img.shields.io/codefactor/grade/github/rovecode/Rovecode.Lotos/master)](https://www.fuget.org/packages/Rovecode.Lotos)
 
-
-
 ## Features
+
 
 ## Code Example
 
