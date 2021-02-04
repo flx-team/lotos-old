@@ -16,9 +16,9 @@ namespace AspNetCoreApiExample.Controllers
     public class ProfilesController : ControllerBase
     {
         private readonly ILogger<ProfilesController> _logger;
-        private readonly UserStorage _profileStorage;
+        private readonly IUserStorage _profileStorage;
 
-        public ProfilesController(ILogger<ProfilesController> logger, UserStorage profileStorage)
+        public ProfilesController(ILogger<ProfilesController> logger, IUserStorage profileStorage)
         {
             _logger = logger;
 
