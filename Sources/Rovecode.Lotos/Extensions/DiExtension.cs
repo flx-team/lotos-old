@@ -13,6 +13,12 @@ namespace Rovecode.Lotos.Extensions
 {
     public static class DiExtension
     {
+        private struct ScopeTypes
+        {
+            public Type ClassType { get; set; }
+            public Type? InterfaceType { get; set; }
+        }
+
         public static void AddLotos(this IServiceCollection services, Assembly assembly)
         {
             services.AddMongoClient();
@@ -70,15 +76,36 @@ namespace Rovecode.Lotos.Extensions
 
         private static void AddRepositories(this IServiceCollection services, Assembly assembly)
         {
+            
             var repositoryTypes = assembly.GetTypes()
                 .Where(x => x.IsClass && !x.IsAbstract && x.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IStorage<>)))
                 .ToArray();
 
-            foreach (var type in repositoryTypes)
+            var respostoriesInterfacesTypes = repositoryTypes.Select(e =>
             {
-                services.AddScoped(type);
+                var inter = e.GetInterfaces().SingleOrDefault(x => x.GetInterfaces().Any(e => e.IsGenericType && e.GetGenericTypeDefinition() == typeof(IStorage<>)));
+
+                return new ScopeTypes
+                {
+                    ClassType = e,
+                    InterfaceType = inter,
+                };
+            });
+
+            // add custom storages
+            foreach (var types in respostoriesInterfacesTypes)
+            {
+                if (types.InterfaceType is not null)
+                {
+                    services.AddScoped(types.InterfaceType, types.ClassType);
+                }
+                else
+                {
+                    services.AddScoped(types.ClassType);
+                }
             }
 
+            // add root storages
             services.AddScoped(typeof(IStorage<>), typeof(Storage<>));
         }
 

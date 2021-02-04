@@ -6,7 +6,12 @@ using Rovecode.Lotos.Repositories;
 
 namespace AspNetCoreApiExample.Storages
 {
-    public sealed class UserStorage : Storage<ProfileEntity>
+    public interface IUserStorage : IStorage<ProfileEntity>
+    {
+        public Task<long> CustomCount();
+    }
+
+    public sealed class UserStorage : Storage<ProfileEntity>, IUserStorage
     {
         public UserStorage(StorageContext<ProfileEntity> storageContext) : base(storageContext)
         {
