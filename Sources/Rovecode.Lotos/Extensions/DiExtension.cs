@@ -62,7 +62,13 @@ namespace Rovecode.Lotos.Extensions
                 {
                     var mongoClient = provider.GetRequiredService<MongoClient>();
 
-                    var db = mongoClient.GetDatabase("Lotos");
+                    var configuration = provider.GetRequiredService<IConfiguration>();
+
+                    var configurationSection = configuration.GetSection("Lotos");
+
+                    var dbName = configurationSection["Name"] ?? "Lotos";
+
+                    var db = mongoClient.GetDatabase(dbName);
 
                     if (!db.IsMongoLive(10000))
                         throw new LotosException("Unable to connect to database");
