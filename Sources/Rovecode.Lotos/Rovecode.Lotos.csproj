@@ -34,10 +34,6 @@
 		<Folder Include="Extensions\" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Remove="..\..\Assets\stable_icon.png" />
-		<None Remove="..\..\LICENSE" />
-	</ItemGroup>
-	<ItemGroup>
 		<None Include="..\..\LICENSE">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
