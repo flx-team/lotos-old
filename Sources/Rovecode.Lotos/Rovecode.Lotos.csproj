@@ -20,12 +20,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Remove="Assets\**" />
-		<EmbeddedResource Remove="Assets\**" />
-		<None Remove="Assets\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="MongoDB.Driver" Version="2.12.1" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
@@ -38,5 +32,21 @@
 		<Folder Include="Repositories\" />
 		<Folder Include="Utils\" />
 		<Folder Include="Extensions\" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="..\..\Assets\stable_icon.png" />
+		<None Remove="..\..\LICENSE" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+			<Link>Assets\LICENSE</Link>
+		</None>
+		<None Include="..\..\Assets\stable_icon.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+			<Link>Assets\stable_icon.png</Link>
+		</None>
 	</ItemGroup>
 </Project>
