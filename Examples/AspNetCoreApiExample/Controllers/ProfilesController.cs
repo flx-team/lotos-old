@@ -17,10 +17,13 @@ namespace AspNetCoreApiExample.Controllers
     {
         private readonly ILogger<ProfilesController> _logger;
         private readonly IUserStorage _profileStorage;
+        private readonly SessionContext _sessionCtx;
 
-        public ProfilesController(ILogger<ProfilesController> logger, IUserStorage profileStorage)
+        public ProfilesController(ILogger<ProfilesController> logger, IUserStorage profileStorage, SessionContext sessionContext)
         {
             _logger = logger;
+
+            _sessionCtx = sessionContext;
 
             _profileStorage = profileStorage;
         }
@@ -28,7 +31,14 @@ namespace AspNetCoreApiExample.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> PostAddProfile([FromBody] ProfileEntity profileData)
         {
-            await _profileStorage.Put(profileData);
+            _sessionCtx.Start();
+
+            _profileStorage.UseSession(_sessionCtx);
+
+            await _sessionCtx.Sandbox(async () =>
+            {
+                await _profileStorage.Put(profileData);
+            });
 
             return Ok();
         }

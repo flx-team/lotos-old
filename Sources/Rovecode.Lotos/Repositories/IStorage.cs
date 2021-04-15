@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Rovecode.Lotos.Contexts;
 using Rovecode.Lotos.Entities;
 
 namespace Rovecode.Lotos.Repositories
 {
     public interface IStorage<T> where T : StorageEntity<T>
     {
+        public void UseSession(SessionContext sessionContext);
+
         public Task<T> Put(T entity);
 
         public Task Push(T entity);
