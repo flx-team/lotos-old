@@ -27,7 +27,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Exceptions\" />
-		<Folder Include="Contexts\" />
 		<Folder Include="Entities\" />
 		<Folder Include="Repositories\" />
 		<Folder Include="Utils\" />

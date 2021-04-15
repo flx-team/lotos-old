@@ -9,7 +9,7 @@ namespace Rovecode.Lotos.Contexts
 {
     public sealed class SessionContext : IDisposable
     {
-        public delegate Task SessionSandboxCallback(SessionContext);
+        public delegate Task SessionSandboxCallback(SessionContext context);
 
         internal IClientSessionHandle Handle { get; }
 

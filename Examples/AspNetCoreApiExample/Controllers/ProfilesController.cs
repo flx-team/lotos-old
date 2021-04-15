@@ -37,7 +37,7 @@ namespace AspNetCoreApiExample.Controllers
             {
                 await _profileStorage.Put(profileData);
 
-                ctx.CloseWithError();
+                await ctx.CloseWithError();
             });
 
             return Ok();
