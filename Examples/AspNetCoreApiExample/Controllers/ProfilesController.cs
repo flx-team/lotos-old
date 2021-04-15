@@ -31,13 +31,13 @@ namespace AspNetCoreApiExample.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> PostAddProfile([FromBody] ProfileEntity profileData)
         {
-            _sessionCtx.Start();
-
             _profileStorage.UseSession(_sessionCtx);
 
-            await _sessionCtx.Sandbox(async () =>
+            await _sessionCtx.Sandbox(async (ctx) =>
             {
                 await _profileStorage.Put(profileData);
+
+                ctx.CloseWithError();
             });
 
             return Ok();

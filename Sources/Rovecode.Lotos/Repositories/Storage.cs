@@ -23,11 +23,6 @@ namespace Rovecode.Lotos.Repositories
 
         public void UseSession(SessionContext sessionContext)
         {
-            if (!sessionContext.IsStarted)
-            {
-                throw new LotosException("Session is not started");
-            }
-
             _session = sessionContext;
         }
 

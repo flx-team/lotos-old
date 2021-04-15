@@ -9,6 +9,8 @@ namespace Rovecode.Lotos.Contexts
 {
     public sealed class SessionContext : IDisposable
     {
+        public delegate Task SessionSandboxCallback(SessionContext);
+
         internal IClientSessionHandle Handle { get; }
 
         public bool IsStarted => Handle.IsInTransaction;
@@ -33,16 +35,28 @@ namespace Rovecode.Lotos.Contexts
             return Handle.AbortTransactionAsync();
         }
 
-        public async Task Sandbox(Func<Task> func)
+        public async Task Sandbox(SessionSandboxCallback func)
         {
+            if (!IsStarted)
+            {
+                Start();
+            }
+
             try
             {
-                await func.Invoke();
-                await CloseWithSuccess();
+                await func.Invoke(this);
+
+                if (IsStarted)
+                {
+                    await CloseWithSuccess();
+                }
             }
             catch (Exception)
             {
-                await CloseWithError();
+                if (IsStarted)
+                {
+                    await CloseWithError();
+                }
                 throw;
             }
         }
