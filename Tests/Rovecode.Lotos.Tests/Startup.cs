@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Rovecode.Lotos.Tests
+namespace Lotos.Tests
 {
     public class Startup
     {

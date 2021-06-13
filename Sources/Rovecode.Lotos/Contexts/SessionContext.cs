@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rovecode.Lotos.Contexts
+namespace Lotos.Contexts
 {
     public sealed class SessionContext : IDisposable
     {
@@ -35,7 +35,7 @@ namespace Rovecode.Lotos.Contexts
             return Handle.AbortTransactionAsync();
         }
 
-        public async Task Sandbox(SessionSandboxCallback func)
+        public async Task Sandbox<T>(SessionSandboxCallback func) where T : Exception, new()
         {
             if (!IsStarted)
             {
@@ -51,7 +51,7 @@ namespace Rovecode.Lotos.Contexts
                     await CloseWithSuccess();
                 }
             }
-            catch (Exception)
+            catch (T)
             {
                 if (IsStarted)
                 {

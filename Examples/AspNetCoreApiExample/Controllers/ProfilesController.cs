@@ -6,8 +6,8 @@ using AspNetCoreApiExample.Models;
 using AspNetCoreApiExample.Storages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Rovecode.Lotos.Contexts;
-using Rovecode.Lotos.Repositories;
+using Lotos.Contexts;
+using Lotos.Repositories;
 
 namespace AspNetCoreApiExample.Controllers
 {
@@ -33,9 +33,9 @@ namespace AspNetCoreApiExample.Controllers
         {
             _profileStorage.UseSession(_sessionCtx);
 
-            await _sessionCtx.Sandbox(async (ctx) =>
+            await _sessionCtx.Sandbox<Exception>(async (ctx) =>
             {
-                await _profileStorage.Put(profileData);
+                await _profileStorage.Save(profileData);
 
                 await ctx.CloseWithError();
             });

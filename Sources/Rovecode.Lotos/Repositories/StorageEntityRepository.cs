@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Rovecode.Lotos.Entities;
+using Lotos.Entities;
 
-namespace Rovecode.Lotos.Repositories
+namespace Lotos.Repositories
 {
     public class StorageEntityRepository<T> : IStorageEntityRepository<T> where T : StorageEntity<T>
     {
@@ -21,9 +21,9 @@ namespace Rovecode.Lotos.Repositories
             return Storage.Exists(_entity.Id);
         }
 
-        public Task Push()
+        public Task Update()
         {
-            return Storage.Push(_entity);
+            return Storage.Update(_entity);
         }
 
         public Task Remove()
@@ -31,7 +31,7 @@ namespace Rovecode.Lotos.Repositories
             return Storage.Remove(_entity.Id);
         }
 
-        public Task<T> Pull()
+        public Task<T> CopyActual()
         {
             return Storage.Pick(_entity.Id)!;
         }

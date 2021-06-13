@@ -1,5 +1,5 @@
 ﻿using System;
-using Rovecode.Lotos.Entities;
+using Lotos.Entities;
 
 namespace AspNetCoreApiExample.Models
 {

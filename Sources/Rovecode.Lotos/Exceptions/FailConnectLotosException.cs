@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Rovecode.Lotos.Exceptions
+namespace Lotos.Exceptions
 {
     public class FailConnectLotosException : LotosException
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AspNetCoreApiExample.Models;
-using Rovecode.Lotos.Contexts;
-using Rovecode.Lotos.Repositories;
+using Lotos.Contexts;
+using Lotos.Repositories;
 
 namespace AspNetCoreApiExample.Storages
 {

@@ -5,11 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Rovecode.Lotos.Contexts;
-using Rovecode.Lotos.Exceptions;
-using Rovecode.Lotos.Repositories;
+using Lotos.Contexts;
+using Lotos.Exceptions;
+using Lotos.Repositories;
 
-namespace Rovecode.Lotos.Extensions
+namespace Lotos.Extensions
 {
     public static class DiExtension
     {

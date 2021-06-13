@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
-using Rovecode.Lotos.Exceptions;
-using Rovecode.Lotos.Repositories;
+using Lotos.Exceptions;
+using Lotos.Repositories;
 
-namespace Rovecode.Lotos.Entities
+namespace Lotos.Entities
 {
     public abstract class StorageEntity<T> : IEntity, IStorageEntityRepository<T> where T : StorageEntity<T>
     {
@@ -24,14 +25,14 @@ namespace Rovecode.Lotos.Entities
             return Storage.Exists(id: Id);
         }
 
-        public async Task Push()
+        public async Task Update()
         {
             if (!await Exists())
             {
                 throw new LotosException("Current entity store in db");
             }
 
-            await Storage.Push((T)this!);
+            await Storage.Update((T)this!);
         }
 
         public async Task Remove()
@@ -44,7 +45,7 @@ namespace Rovecode.Lotos.Entities
             await Storage.Remove(Id);
         }
 
-        public async Task<T> Pull()
+        public async Task<T> CopyActual()
         {
             var result = await Storage.Pick(Id);
 

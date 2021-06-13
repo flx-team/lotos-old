@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using MongoDB.Driver;
-using Rovecode.Lotos.Exceptions;
-using Rovecode.Lotos.Entities;
+using Lotos.Exceptions;
+using Lotos.Entities;
 
-namespace Rovecode.Lotos.Utils
+namespace Lotos.Utils
 {
     public static class StorageUtils
     {

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MongoDB.Driver;
-using Rovecode.Lotos.Entities;
-using Rovecode.Lotos.Contexts;
-using Rovecode.Lotos.Utils;
-using Rovecode.Lotos.Repositories;
-using Rovecode.Lotos.Exceptions;
+using Lotos.Entities;
+using Lotos.Contexts;
+using Lotos.Utils;
+using Lotos.Repositories;
+using Lotos.Exceptions;
 
-namespace Rovecode.Lotos.Repositories
+namespace Lotos.Repositories
 {
     public class Storage<T> : IStorage<T> where T : StorageEntity<T>
     {
@@ -123,12 +123,12 @@ namespace Rovecode.Lotos.Repositories
             return PickMany(e => true);
         }
 
-        public async Task Push(T entity)
+        public async Task Update(T entity)
         {
             await _context.Collection.ReplaceOneAsync(_session?.Handle, StorageUtils.BuildIdFilter<T>(entity.Id), entity);
         }
 
-        public async Task<T> Put(T entity)
+        public async Task<T> Save(T entity)
         {
             entity.Id = Guid.NewGuid();
 

@@ -5,22 +5,22 @@
 		<Nullable>enable</Nullable>
 		<WarningsAsErrors>nullable</WarningsAsErrors>
 		<PackOnBuild>true</PackOnBuild>
-		<Authors>Roman S</Authors>
-		<Description>Easy library for work with Mongo DB in ASP.NET. Full support for NET 5. Nullsafe.</Description>
-		<Copyright>Roman S</Copyright>
-		<Owners>Roman S</Owners>
-		<Title>Rovecode.Lotos</Title>
+		<Authors>Flx</Authors>
+		<Description>Small library with easy interface for work with Mongo DB. Created special for ASP.NET, .NET 5 and Null Safe.</Description>
+		<Copyright>Flx</Copyright>
+		<Owners>Flx</Owners>
+		<Title>Lotos</Title>
 		<NeutralLanguage>en-US</NeutralLanguage>
-		<ReleaseVersion>2.1.1</ReleaseVersion>
-		<PackageVersion>2.1.1</PackageVersion>
-		<PackageIcon>stable_icon.png</PackageIcon>
+		<ReleaseVersion>3.0.0</ReleaseVersion>
+		<PackageVersion>3.0.0</PackageVersion>
+		<PackageIcon>logo.png</PackageIcon>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<SynchReleaseVersion>false</SynchReleaseVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MongoDB.Driver" Version="2.12.1" />
+		<PackageReference Include="MongoDB.Driver" Version="2.12.4" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
@@ -42,6 +42,11 @@
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 			<Link>Assets\stable_icon.png</Link>
+		</None>
+		<None Include="..\..\Assets\logo.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+			<Link>Assets\logo.png</Link>
 		</None>
 	</ItemGroup>
 </Project>

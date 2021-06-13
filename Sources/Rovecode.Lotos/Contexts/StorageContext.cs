@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
-using Rovecode.Lotos.Entities;
+using Lotos.Entities;
 
-namespace Rovecode.Lotos.Contexts
+namespace Lotos.Contexts
 {
     public class StorageContext<T> where T : StorageEntity<T>
     {

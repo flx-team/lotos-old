@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.808.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sources", "Sources", "{E3EA3428-7F00-47C6-8574-2E3C79DDDC18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rovecode.Lotos", "Sources\Rovecode.Lotos\Rovecode.Lotos.csproj", "{BCE64FC3-CDB0-4F5F-8E59-8605D5126AA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lotos", "Sources\Rovecode.Lotos\Lotos.csproj", "{BCE64FC3-CDB0-4F5F-8E59-8605D5126AA2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{6ABD8602-5A7F-488A-8C40-1778245EB17C}"
 EndProject

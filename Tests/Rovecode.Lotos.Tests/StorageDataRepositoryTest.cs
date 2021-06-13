@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Rovecode.Lotos.Tests
+namespace Lotos.Tests
 {
     public class StorageDataRepositoryTest
     {
